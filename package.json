@@ -1,0 +1,38 @@
+{
+  "name": "express-core",
+  "version": "1.0.0",
+  "description": "Repositorio de práctica y lugar de trabajo en ruta de aprendizaje de express",
+  "keywords": [
+    "express",
+    "github",
+    "core",
+    "nodejs",
+    "module",
+    "framework",
+    "mongodb"
+  ],
+  "homepage": "https://github.com/Anderson-Oloroso/node-express-core#readme",
+  "bugs": {
+    "url": "https://github.com/Anderson-Oloroso/node-express-core/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anderson-Oloroso/node-express-core.git"
+  },
+  "author": "Anderson-Oloroso",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.11.1"
+  },
+  "devDependencies": {
+    "dotenv": "^18.0.6",
+    "nodemon": "^3.1.14"
+  }
+}

@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # 🟢 SERVICIO 1: API de Express en Node.js
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: express_core_api
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+    networks:
+      - backend-network
+
+  # 🍃 SERVICIO 2: Base de Datos NoSQL MongoDB Oficial
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb_core
+    restart: unless-stopped
+    ports:
+      - "${MONGO_PORT:-27017}:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER:-root}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD:-example123}
+      - MONGO_INITDB_DATABASE=${MONGO_DB_NAME:-express_core_db}
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - backend-network
+
+# 💾 Persistencia de datos de MongoDB
+volumes:
+  mongo_data:
+    driver: local
+
+# 🌐 Red interna privada para comunicación entre API y MongoDB
+networks:
+  backend-network:
+    driver: bridge
