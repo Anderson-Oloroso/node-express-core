@@ -7,8 +7,8 @@ dotenv.config();
 const app = express();
 
 const config = {
-    hostname: process.env.HOSTNAME || '0.0.0.0',
-    port: process.env.PORT || 3000
+    port: process.env.PORT,
+    hostname: process.env.HOSTNAME
 };
 
 app.get('/', function(req, res){
