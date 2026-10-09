@@ -25,6 +25,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
+    "module-01": "nodemon src/modules/01-intro-node-express/app.js",
+    "module-02": "nodemon src/modules/02-function-express/app.js  ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
