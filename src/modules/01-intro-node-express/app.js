@@ -8,7 +8,7 @@ const app = express();
 
 const config = {
     port: process.env.PORT,
-    hostname: process.env.HOSTNAME
+    hostname: process.env.HOST
 };
 
 app.get('/', function(req, res){
