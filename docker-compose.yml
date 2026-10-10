@@ -17,6 +17,7 @@ services:
       - mysql
     networks:
       - backend-network
+    # Modo interactivo en espera para compatibilidad con entorno Campuslands y ejecucion modular (Fixes #3)
     stdin_open: true
     tty: true
     command: tail -f /dev/null
