@@ -16,5 +16,5 @@ COPY . .
 # 6. Exponer el puerto de la aplicación
 EXPOSE 3000
 
-# 7. Comando de inicio en desarrollo
+# 7. Comando de inicio por defecto
 CMD ["npm", "run", "dev"]
