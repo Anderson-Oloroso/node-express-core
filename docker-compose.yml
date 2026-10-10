@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
   # 🟢 SERVICIO 1: API de Express en Node.js
   api:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
     container_name: express_core_api
     restart: unless-stopped
     ports:
@@ -16,32 +14,37 @@ services:
       - .:/app
       - /app/node_modules
     depends_on:
-      - mongodb
+      - mysql
     networks:
       - backend-network
+    # Modo interactivo en espera para compatibilidad con entorno Campuslands y ejecucion modular (Fixes #3)
+    stdin_open: true
+    tty: true
+    command: tail -f /dev/null
 
-  # 🍃 SERVICIO 2: Base de Datos NoSQL MongoDB Oficial
-  mongodb:
-    image: mongo:6.0
-    container_name: mongodb_core
+  # 🐬 SERVICIO 2: Base de Datos Relacional MySQL Oficial
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_core
     restart: unless-stopped
     ports:
-      - "${MONGO_PORT:-27017}:27017"
+      - "${DB_EXTERNAL_PORT:-3307}:3306"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER:-root}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD:-example123}
-      - MONGO_INITDB_DATABASE=${MONGO_DB_NAME:-express_core_db}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root123}
+      MYSQL_DATABASE: ${DB_NAME:-express_core_db}
+      MYSQL_USER: ${DB_USER:-express_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-express_pass123}
     volumes:
-      - mongo_data:/data/db
+      - mysql_data:/var/lib/mysql
     networks:
       - backend-network
 
-# 💾 Persistencia de datos de MongoDB
+# 💾 Persistencia de datos de MySQL
 volumes:
-  mongo_data:
+  mysql_data:
     driver: local
 
-# 🌐 Red interna privada para comunicación entre API y MongoDB
+# 🌐 Red interna privada para comunicación entre API y MySQL
 networks:
   backend-network:
     driver: bridge

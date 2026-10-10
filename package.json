@@ -9,7 +9,7 @@
     "nodejs",
     "module",
     "framework",
-    "mongodb"
+    "mysql"
   ],
   "homepage": "https://github.com/Anderson-Oloroso/node-express-core#readme",
   "bugs": {
@@ -25,11 +25,13 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
+    "module-01": "nodemon src/modules/01-intro-node-express/app.js",
+    "module-02": "nodemon src/modules/02-function-express/app.js  ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "express": "^5.2.1",
-    "mongoose": "^9.11.1"
+    "mysql2": "^3.12.0"
   },
   "devDependencies": {
     "dotenv": "^18.0.6",

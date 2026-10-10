@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     res.status(200).json({
         ok: true,
         project: 'express-core',
-        message: '🚀 Servidor Express + MongoDB con Docker corriendo perfectamente',
+        message: '🚀 Servidor Express + MySQL con Docker corriendo perfectamente',
         environment: process.env.NODE_ENV || 'development',
         timestamp: new Date().toISOString()
     });
