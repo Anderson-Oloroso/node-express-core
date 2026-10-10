@@ -9,7 +9,7 @@
     "nodejs",
     "module",
     "framework",
-    "mongodb"
+    "mysql"
   ],
   "homepage": "https://github.com/Anderson-Oloroso/node-express-core#readme",
   "bugs": {
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "express": "^5.2.1",
-    "mongoose": "^9.11.1"
+    "mysql2": "^3.12.0"
   },
   "devDependencies": {
     "dotenv": "^18.0.6",

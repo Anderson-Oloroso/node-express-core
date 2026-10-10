@@ -1,6 +1,6 @@
 # 🚀 Node Express Core
 
-> Repositorio central de aprendizaje, laboratorios prácticos y arquitectura backend con **Node.js**, **Express.js**, **MongoDB** y **Docker**.
+> Repositorio central de aprendizaje, laboratorios prácticos y arquitectura backend con **Node.js**, **Express.js**, **MySQL** y **Docker**.
 
 ---
 
@@ -8,7 +8,7 @@
 
 **`node-express-core`** es un espacio de desarrollo modular diseñado para dominar los fundamentos y las técnicas avanzadas del ecosistema backend con Node.js y Express. 
 
-El proyecto abarca desde la creación de servidores HTTP RESTful, middlewares y persistencia NoSQL con Mongoose, hasta la implementación de patrones de arquitectura empresarial como **DTOs**, **MVC**, control de tráfico con **Rate Limiting**, manejo seguro de **Cookies** y autenticación robusta basada en **JWT con Passport.js**.
+El proyecto abarca desde la creación de servidores HTTP RESTful, middlewares y persistencia relacional con MySQL, hasta la implementación de patrones de arquitectura empresarial como **DTOs**, **MVC**, control de tráfico con **Rate Limiting**, manejo seguro de **Cookies** y autenticación robusta basada en **JWT con Passport.js**.
 
 Todo el entorno se encuentra completamente **contenedorizado con Docker Compose**, garantizando un despliegue homogéneo, aislado y portátil.
 
@@ -18,8 +18,8 @@ Todo el entorno se encuentra completamente **contenedorizado con Docker Compose*
 
 * **Runtime:** Node.js (v20+ ESM)
 * **Framework Web:** Express.js (v5+)
-* **Base de Datos NoSQL:** MongoDB (v6.0)
-* **ODM / Modelado:** Mongoose (v9+)
+* **Base de Datos Relacional:** MySQL (v8.0)
+* **Driver DB:** `mysql2` (Connection Pool con promesas)
 * **Contenedores:** Docker & Docker Compose
 * **Seguridad & Auth:** Passport.js, JWT, Bcrypt, Express Rate Limit, Cookie Parser
 
@@ -54,13 +54,13 @@ cd node-express-core
 cp .env.example .env
 ```
 
-### 3. Levantar los contenedores (API + MongoDB)
+### 3. Levantar los contenedores (API + MySQL)
 ```bash
-docker compose up --build
+docker compose up -d --build
 ```
 
 * 🌐 **API Express:** `http://localhost:3000`
-* 🍃 **MongoDB:** `localhost:27017`
+* 🐬 **MySQL:** `localhost:3307`
 
 ---
 
