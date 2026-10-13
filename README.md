@@ -62,6 +62,42 @@ docker compose up -d --build
 * 🌐 **API Express:** `http://localhost:3000`
 * 🐬 **MySQL:** `localhost:3307`
 
+## 🧩 Ejecutar el módulo 03 (MySQL)
+
+El módulo 03 carga únicamente su configuración desde
+`src/modules/03-connection-mysql/.env`; no depende del `.env` de la raíz ni cambia
+la configuración de los módulos anteriores.
+
+1. Inicia MySQL con Docker Compose desde la raíz del proyecto:
+
+   ```bash
+   docker compose up -d mysql
+   ```
+
+2. Completa `src/modules/03-connection-mysql/.env` usando
+   `src/modules/03-connection-mysql/.env.example` como referencia. Si ejecutas el
+   módulo dentro del contenedor `api`, usa `DB_HOST=mysql` y `DB_PORT=3306`.
+   `DB_PASSWORD` debe coincidir con `DB_ROOT_PASSWORD` del `.env` de la raíz.
+   Este acceso como root es solo para el ejercicio local. Si ejecutas Node
+   directamente en tu computadora, usa `DB_HOST=127.0.0.1` y `DB_PORT=3307`.
+
+3. Ejecuta el SQL una vez para crear la base `campus` y cargar sus productos:
+
+   ```bash
+   docker compose exec -T mysql sh -c 'MYSQL_PWD="$MYSQL_ROOT_PASSWORD" mysql --default-character-set=utf8mb4 -uroot' < src/modules/03-connection-mysql/database/01-init.sql
+   ```
+
+4. Desde la raíz, inicia únicamente el módulo 03 dentro del contenedor:
+
+   ```bash
+   docker compose exec api npm run module-03
+   ```
+
+   Abre `http://localhost:3003/productos` para comprobar la conexión. El SQL
+   puede ejecutarse de nuevo para actualizar los productos de ejemplo. Si
+   prefieres ejecutarlo directamente en tu computadora, usa `npm run module-03`
+   y los valores `127.0.0.1:3307` en el `.env` del módulo.
+
 ---
 
 ## 👨‍💻 Autor
