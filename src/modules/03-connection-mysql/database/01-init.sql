@@ -14,6 +14,17 @@ CREATE TABLE IF NOT EXISTS productos (
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS usuarios(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    dpi DECIMAL(13, 0) NOT NULL UNIQUE,
+    nombre varchar(60) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telefono Varchar(20),
+    contrasenia VARCHAR(30) NOT NULL,
+    activo TINYINT CHECK (activo = 0 || activo = 1) DEFAULT 1,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- INSERT INTO
 INSERT INTO productos (codigo, nombre, descripcion, precio, activo)
 VALUES

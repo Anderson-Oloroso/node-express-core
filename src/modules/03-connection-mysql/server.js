@@ -8,6 +8,8 @@ dotenv.config({
 });
 
 const { default: productoRouter } = await import('./routes/productos.router.js');
+const { default: usuariosRouter } = await import('./routes/usuarios.router.js');
+
 
 const server = express();
 
@@ -17,6 +19,7 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
 server.use('/productos', productoRouter);
+server.use('/usuarios', usuariosRouter);
 
 // 1. Ruta no existente
 server.use((req, res)=>{
