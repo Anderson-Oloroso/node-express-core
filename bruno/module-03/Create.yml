@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-        "codigo": "P010",
+        "codigo": "P011",
         "nombre": "Libro Químico",
         "descripcion": "Libro de química avanzada",
         "precio": "12.50"

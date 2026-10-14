@@ -1,0 +1,26 @@
+info:
+  name: Crear Usuario
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: http://localhost:3003/usuarios
+  body:
+    type: json
+    data: |
+      {
+        "identificacion": 1234569874125,
+        "nombre": "Alondra Martin",
+        "email": "alondra.martin@ilark.com",
+        "telefono": "53172551",
+        "contrasenia": "Alondra_Mailov"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

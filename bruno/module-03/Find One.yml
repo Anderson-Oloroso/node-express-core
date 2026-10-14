@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:3003/productos/7
+  url: http://localhost:3003/productos/6
   auth: inherit
 
 settings:
