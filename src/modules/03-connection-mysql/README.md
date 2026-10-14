@@ -1,18 +1,19 @@
 # 📦 Módulo 03: Conexión a Base de Datos MySQL con Express.js (`mysql2`)
 
 > **Ruta de aprendizaje:** Persistencia Relacional y Operaciones CRUD  
-> **Tema:** Conexión a base de datos MySQL 8.0 mediante Connection Pool (`mysql2/promise`), consultas preparadas contra SQL Injection, scripts de inicialización DDL/DML y operaciones CRUD completas.
+> **Tema:** Conexión a MySQL 8.0 mediante Connection Pool (`mysql2/promise`), consultas preparadas, validación de entradas y operaciones sobre productos y usuarios.
 
 ---
 
 ## 🎯 Objetivos de Aprendizaje
 * Configurar y gestionar un pool de conexiones persistente con `mysql2/promise`.
 * Prevenir vulnerabilidades de **SQL Injection** mediante consultas parametrizadas y preparadas con `pool.execute()` y marcadores posicionales (`?`).
-* Implementar operaciones CRUD completas (Create, Read, Update) sobre la tabla relacional `productos`.
+* Implementar operaciones para consultar y modificar productos, y crear y consultar usuarios.
 * Utilizar funciones SQL como `IFNULL()` para actualizaciones parciales en sentencias `UPDATE`.
+* Validar los datos de creación de usuarios con `express-validator`.
 * Aislar la configuración del módulo mediante un archivo `.env` específico y resolución de ruta con `import.meta.url`.
 * Automatizar la creación del esquema y datos iniciales mediante scripts SQL (`01-init.sql`).
-* Implementar middlewares globales para captura de rutas 404 y control centralizado de errores.
+* Implementar middlewares para rutas no encontradas y manejo centralizado de errores.
 
 ---
 
@@ -25,8 +26,14 @@ src/modules/03-connection-mysql/
 │   └── database.js          # Configuración del Connection Pool con mysql2/promise
 ├── database/
 │   └── 01-init.sql          # Script DDL (CREATE TABLE) y DML (INSERT iniciales)
+├── DTO/
+│   ├── usuario.dto.js       # DTO para crear usuarios
+│   └── usuario.obtener.dto.js
+├── validaciones/
+│   └── usuario.crear.validaciones.js # Validaciones del alta de usuarios
 ├── routes/
-│   └── productos.router.js  # Endpoints CRUD de la entidad productos
+│   ├── productos.router.js  # Endpoints de productos
+│   └── usuarios.router.js   # Endpoints de usuarios
 ├── server.js                # Servidor Express, carga de entorno y manejo de errores
 └── README.md                # Documentación del módulo
 ```
@@ -53,6 +60,49 @@ CREATE TABLE IF NOT EXISTS productos (
 ```
 
 Incluye además semillas de datos con cláusula `ON DUPLICATE KEY UPDATE` para permitir re-ejecuciones seguras e idempotentes.
+
+---
+
+## 👤 Usuarios
+
+La tabla `usuarios` almacena el DPI en `DECIMAL(13, 0)`, además del nombre, correo, teléfono y contraseña. El DPI debe caber en ese rango (hasta 13 dígitos). Como el campo es numérico, los ceros iniciales no se conservan.
+
+Los endpoints están montados bajo el prefijo `/usuarios`:
+
+| Método | Endpoint | Descripción | Códigos HTTP |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/usuarios/:id` | Obtiene un usuario por su ID y devuelve sus datos públicos. | `200 OK`, `404 Not Found` |
+| `POST` | `/usuarios` | Crea un usuario. Valida `identificacion`, `nombre` y `email` antes de insertarlo. | `201 Created`, `400 Bad Request` |
+
+Ejemplo de cuerpo para `POST /usuarios`:
+
+```json
+{
+  "identificacion": "1234567896305",
+  "nombre": "Alondra Lucia Martin",
+  "email": "alondra.martin@ilark.com",
+  "telefono": "53172551",
+  "contrasenia": "Alondra_Mailov"
+}
+```
+
+La identificación puede enviarse como texto numérico, lo que evita perder ceros iniciales antes de llegar al servidor; `express-validator` comprueba que sea un entero. El nombre debe ser texto no vacío y el correo debe tener formato válido.
+
+Cuando falla la validación, la API responde con `400 Bad Request` y un objeto con el mensaje y el detalle de cada error:
+
+```json
+{
+  "mensaje": "Errores de validación",
+  "errores": [
+    {
+      "type": "field",
+      "msg": "Ingrese un correo válido",
+      "path": "email",
+      "location": "body"
+    }
+  ]
+}
+```
 
 ---
 
@@ -131,9 +181,11 @@ El servidor estará escuchando en `http://localhost:3003`.
 
 ## 🧪 Pruebas con Bruno
 
-La colección de pruebas se encuentra en [bruno/module-03/](file:///c:/Users/Henrik/Downloads/Extras/Node.js/express/node-express-core/bruno/module-03):
+La colección de pruebas se encuentra en [bruno/module-03/](../../../bruno/module-03):
 
 * **`Get productos.yml`:** Consulta general (`GET http://localhost:3003/productos`).
-* **`Find One.yml`:** Consulta de un producto por ID (`GET http://localhost:3003/productos/1`).
-* **`Create.yml`:** Registro de un nuevo producto enviando el payload JSON (`POST http://localhost:3003/productos`).
-* **`Update.yml`:** Actualización parcial o total de atributos (`PUT http://localhost:3003/productos/1`).
+* **`Find One.yml`:** Consulta de un producto por ID.
+* **`Create.yml`:** Registro de un producto.
+* **`Update.yml`:** Actualización de un producto.
+* **`Crear Usuario.yml`:** Creación de un usuario (`POST http://localhost:3003/usuarios`) con validación de campos.
+* **`Find One User.yml`:** Consulta de un usuario por ID (`GET http://localhost:3003/usuarios/:id`).

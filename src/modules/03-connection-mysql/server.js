@@ -32,4 +32,13 @@ server.use((err ,req, res)=>{
     res.status(404).json({ error: 'Error interno del servidor' });
 });
 
+server.use(manejadorErrores);
+
+function manejadorErrores(err, req, res, next){
+    res.status(err.statusCode || 500).json({
+        mensaje: err.message || 'Error interno del servidor',
+        errores: err.details || null
+    });
+}
+
 server.listen( PORT, ()=> console.log(`Server running at http://localhost:${PORT}`));
