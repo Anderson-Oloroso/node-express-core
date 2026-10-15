@@ -5,7 +5,7 @@ const stdRouter = Router();
 const students = [
     {code: 'E001', nombre: 'Alondra Martin', ruta: 'NodeJS'},
     {code: 'E002', nombre: 'Jorge Luis', ruta: 'ExpressJS'},
-    {code: 'E003', nombre: 'Maria Fernanda', ruta: 'MongoDB'},
+    {code: 'E003', nombre: 'Maria Fernanda', ruta: 'MySQL'},
 ];
 
 stdRouter.get('/', (req, res)=>{
