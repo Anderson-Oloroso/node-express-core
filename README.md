@@ -95,7 +95,7 @@ npm run module-03  # Detén con Ctrl + C
 
 Las colecciones de Bruno se encuentran versionadas en la carpeta `bruno/`:
 * [bruno/module-02/](bruno/module-02): Pruebas de rutas de estudiantes y validación del header `role: admin`.
-* [bruno/module-03/](bruno/module-03): Pruebas CRUD completas de la entidad productos conectada a MySQL.
+* [bruno/module-03/](bruno/module-03): Pruebas de productos y de creación/consulta de usuarios conectados a MySQL.
 
 ---
 

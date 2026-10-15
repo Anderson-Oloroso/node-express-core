@@ -3,6 +3,8 @@ import pool from '../config/database.js'
 import CrearUsuarioDTO from '../DTO/usuario.dto.js';
 import ObtenerUsuarioDTO from '../DTO/usuario.obtener.dto.js';
 
+import {uCrearValidaciones, manejadorErroresValidacion} from '../validaciones/usuario.crear.validaciones.js';
+
 const usuariosRouter = Router()
 
 usuariosRouter.get('/:id', async (req, res, next)=>{
@@ -20,7 +22,7 @@ usuariosRouter.get('/:id', async (req, res, next)=>{
     }
 });
 
-usuariosRouter.post('/', async (req, res, next)=>{
+usuariosRouter.post('/', uCrearValidaciones, manejadorErroresValidacion,async (req, res, next)=>{
     try{
         const usuario = new CrearUsuarioDTO(req.body);
         const [ result ] = await pool.execute(
@@ -38,5 +40,6 @@ usuariosRouter.post('/', async (req, res, next)=>{
         next(err)
     }
 });
+
 
 export default usuariosRouter;
