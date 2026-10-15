@@ -10,8 +10,8 @@ http:
     type: json
     data: |
       {
-        "identificacion": 1234569874125,
-        "nombre": "Alondra Martin",
+        "identificacion": "1234567896305",
+        "nombre": "Alondra Lucia Martin",
         "email": "alondra.martin@ilark.com",
         "telefono": "53172551",
         "contrasenia": "Alondra_Mailov"
