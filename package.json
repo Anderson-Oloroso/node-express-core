@@ -28,12 +28,14 @@
     "module-01": "nodemon src/modules/01-intro-node-express/app.js --quiet",
     "module-02": "nodemon src/modules/02-function-express/app.js --quiet",
     "module-03": "nodemon src/modules/03-connection-mysql/server.js --quiet",
+    "module-05": "nodemon src/modules/05-semver/index.js --quiet",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "express": "^5.2.1",
     "express-validator": "^7.3.2",
-    "mysql2": "^3.12.0"
+    "mysql2": "^3.12.0",
+    "semver": "^7.8.5"
   },
   "devDependencies": {
     "dotenv": "^18.0.6",
