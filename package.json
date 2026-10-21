@@ -29,6 +29,7 @@
     "module-02": "nodemon src/modules/02-function-express/app.js --quiet",
     "module-03": "nodemon src/modules/03-connection-mysql/server.js --quiet",
     "module-04": "nodemon src/modules/04-cookies-express/app.js --quiet",
+    "module-05": "nodemon src/modules/05-semver/index.js --quiet",
     "module-06": "nodemon src/modules/06-auth-mvc/app.js --quiet",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -39,7 +40,8 @@
     "express": "^5.3.0",
     "express-rate-limit": "^8.7.1",
     "express-validator": "^7.3.2",
-    "mysql2": "^3.12.0"
+    "mysql2": "^3.12.0",
+    "semver": "^7.8.5"
   },
   "devDependencies": {
     "dotenv": "^18.0.6",
