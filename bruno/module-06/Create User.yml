@@ -1,0 +1,26 @@
+info:
+  name: Create User
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:3003/usuario
+  body:
+    type: json
+    data: |-
+      {
+        "dpi": "1000000000004",
+        "nombre": "Bruno Salas",
+        "email": "bruno.usuario@example.com",
+        "telefono": "5550-0004",
+        "contrasenia": "demo-bruno-004"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

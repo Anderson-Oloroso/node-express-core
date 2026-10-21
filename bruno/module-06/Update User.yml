@@ -1,0 +1,27 @@
+info:
+  name: Update User
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: http://localhost:3003/usuario/1
+  body:
+    type: json
+    data: |-
+      {
+        "dpi": "1000000000001",
+        "nombre": "Ana Rios",
+        "email": "bruno.actualizado@example.com",
+        "telefono": "5550-0040",
+        "contrasenia": "demo-bruno-actualizado",
+        "activo": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
