@@ -28,10 +28,16 @@
     "module-01": "nodemon src/modules/01-intro-node-express/app.js --quiet",
     "module-02": "nodemon src/modules/02-function-express/app.js --quiet",
     "module-03": "nodemon src/modules/03-connection-mysql/server.js --quiet",
+    "module-04": "nodemon src/modules/04-cookies-express/app.js --quiet",
+    "module-06": "nodemon src/modules/06-auth-mvc/app.js --quiet",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "^5.2.1",
+    "cookie": "^1.1.1",
+    "cookie-parser": "^1.4.7",
+    "cookie-session": "^2.1.1",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
     "express-validator": "^7.3.2",
     "mysql2": "^3.12.0"
   },
