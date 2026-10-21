@@ -35,6 +35,9 @@ Cada módulo cuenta con su propio archivo de documentación detallado con explic
 | **01** | **Introducción a Node.js & Express:** Ciclo de vida HTTP, variables de entorno y servidor básico. | — | [📖 Ver README Módulo 01](src/modules/01-intro-node-express/README.md) |
 | **02** | **Funcionalidades de Express:** `express.Router()`, middlewares de headers y control de acceso. | `bruno/module-02` | [📖 Ver README Módulo 02](src/modules/02-function-express/README.md) |
 | **03** | **Conexión a MySQL con `mysql2`:** Connection Pool, consultas preparadas, scripts SQL y CRUD completo. | `bruno/module-03` | [📖 Ver README Módulo 03](src/modules/03-connection-mysql/README.md) |
+| **04** | **Cookies y sesiones:** creación, lectura, firma, expiración y eliminación de cookies. | — | [📖 Ver README Módulo 04](src/modules/04-cookies-express/README.md) |
+| **05** | **SemVer:** validación de compatibilidad entre versiones de clientes y la aplicación. | — | [📖 Ver README Módulo 05](src/modules/05-semver/README.md) |
+| **06** | **CRUD de usuarios con MVC y MySQL:** separación de rutas, controladores y modelos. | `bruno/module-06` | [📖 Ver README Módulo 06](src/modules/06-auth-mvc/README.md) |
 
 ---
 
@@ -76,6 +79,15 @@ docker compose exec api npm run module-02
 
 # Módulo 03: API de Productos con MySQL
 docker compose exec api npm run module-03
+
+# Módulo 04: Cookies y sesiones
+docker compose exec api npm run module-04
+
+# Módulo 05: Compatibilidad SemVer
+docker compose exec api npm run module-05
+
+# Módulo 06: CRUD MVC con MySQL
+docker compose exec api npm run module-06
 ```
 
 ### Opción 2: Entrando a la consola interactiva del contenedor
@@ -87,6 +99,9 @@ docker exec -it express_core_api sh
 npm run dev        # Detén con Ctrl + C
 npm run module-02  # Detén con Ctrl + C
 npm run module-03  # Detén con Ctrl + C
+npm run module-04  # Detén con Ctrl + C
+npm run module-05  # Detén con Ctrl + C
+npm run module-06  # Detén con Ctrl + C
 ```
 
 ---
@@ -96,6 +111,7 @@ npm run module-03  # Detén con Ctrl + C
 Las colecciones de Bruno se encuentran versionadas en la carpeta `bruno/`:
 * [bruno/module-02/](bruno/module-02): Pruebas de rutas de estudiantes y validación del header `role: admin`.
 * [bruno/module-03/](bruno/module-03): Pruebas de productos y de creación/consulta de usuarios conectados a MySQL.
+* [bruno/module-06/](bruno/module-06): Listar, consultar, crear, actualizar y eliminar usuarios mediante el CRUD MVC.
 
 ---
 
